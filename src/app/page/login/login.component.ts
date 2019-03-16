@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { first } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,8 +13,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
+  error = '';
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -31,7 +38,17 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(true);
+    this.authenticationService.login(this.f.email.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['/home']);
+        },
+        error => {
+          this.registerForm.reset();
+          this.submitted = false;
+          this.error = error;
+        });
 
   }
 

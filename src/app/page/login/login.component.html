@@ -1,53 +1,55 @@
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <div class="form-group">
-            <br><br>
-            <i class="fas fa-user-lock" style="font-size:100px;color:crimson"></i>
-            <br><br>
-            <h4> กรุณาล็อคอินเข้าสู่ระบบ</h4>
-        </div>
-    </div>
-
-    <div class="col-md-4 offset-md-4">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
             <div class="form-group">
-                <label>อีเมล์ :</label>
-                <input type="text" formControlName="email" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="อีเมล์.." />
-                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <div *ngIf="f.email.errors.required">Email is required</div>
-                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>รหัสผ่าน :</label>
-                <input type="password" formControlName="password" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="รหัสผ่าน.." />
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Password is required</div>
-                </div>
-            </div>
-            <div class="row no-gutters">
-                <div class="col">
-                    <button class="btn btn-success col-12">
-                        <h6><i class="fas fa-sign-in-alt"></i> เข้าระบบ</h6>
-                    </button>
-                </div>
-            </div>
-        </form>
-        <br>
-        <div class="row">
-            <div class="col-6">
-                <a class="nav-link" href="#"><i class="fas fa-user-times"></i>
-                    ลืมรหัสผ่าน</a>
-            </div>
-            <div class="col-6 text-right">
-                <a class="nav-link" href="#"><i class="fas fa-user-plus"></i>
-                    สมัคร</a>
+                <br><br>
+                <i class="fas fa-user-lock" style="font-size:100px;color:crimson"></i>
+                <br><br>
+                <h4> กรุณาล็อคอินเข้าสู่ระบบ</h4>
             </div>
         </div>
 
+        <div class="col-md-4 offset-md-4">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label>อีเมล์ :</label>
+                    <input type="text" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="อีเมล์.." />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>รหัสผ่าน :</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="รหัสผ่าน.." />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col">
+                        <button class="btn btn-success col-12">
+                            <h6><i class="fas fa-sign-in-alt"></i> เข้าระบบ</h6>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <div class="row">
+                <div class="col-6">
+                    <a class="nav-link" href="#"><i class="fas fa-user-times"></i>
+                        ลืมรหัสผ่าน</a>
+                </div>
+                <div class="col-6 text-right">
+                    <a class="nav-link" href="#"><i class="fas fa-user-plus"></i>
+                        สมัคร</a>
+                </div>
+            </div>
+            <div *ngIf="error" class="alert alert-danger">* ไม่มีผู้ใช้งานนี้ในระบบ</div>
+        </div>
     </div>
 </div>
